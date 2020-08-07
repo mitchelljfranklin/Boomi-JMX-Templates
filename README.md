@@ -1,0 +1,2 @@
+# Boomi JMX Templates
+
