@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-07-31T05:44:36Z</date>
+    <groups>
+        <group>
+            <name>Boomi</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Boomi Atom JMX</template>
+            <name>Boomi Atom JMX</name>
+            <groups>
+                <group>
+                    <name>Boomi</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Boomi Atom message queue service status</name>
+                </application>
+                <application>
+                    <name>Boomi Execution properties status</name>
+                </application>
+                <application>
+                    <name>Boomi General Atom status</name>
+                </application>
+                <application>
+                    <name>Boomi General JVM status</name>
+                </application>
+                <application>
+                    <name>Boomi Incoming messaging</name>
+                </application>
+                <application>
+                    <name>Boomi Jetty properties</name>
+                </application>
+                <application>
+                    <name>Boomi JGroups 2x</name>
+                </application>
+                <application>
+                    <name>Boomi JGroups 3x</name>
+                </application>
+                <application>
+                    <name>Boomi Operating System Status</name>
+                </application>
+                <application>
+                    <name>Boomi Outgoing messaging</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Number of message bytes received (Molecule cluster.)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=channel,cluster=\&quot;ATOM_CLUSTER\&quot;&quot;, &quot;received_bytes&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of message bytes received by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 3x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of messages received (Molecule cluster)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=channel,cluster=\&quot;ATOM_CLUSTER\&quot;&quot;, &quot;received_messages&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of messages received by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 3x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of message bytes sent (Molecule cluster.)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=channel,cluster=\&quot;ATOM_CLUSTER\&quot;&quot;, &quot;sent_bytes&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of message bytes sent by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 3x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of messages sent (Molecule cluster)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=channel,cluster=\&quot;ATOM_CLUSTER\&quot;&quot;, &quot;sent_messages&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of messages sent by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored for sudden changes (possibly indicating communication issues in the cluster) or growth over time (possibly indicating the approach of peak workload for the cluster). Note that the head node might have significantly different values from the rest of the nodes in the cluster.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 3x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of attached accounts</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=Config&quot;, &quot;ContainerAccountCount&quot;]</key>
+                    <history>7d</history>
+                    <trends>130d</trends>
+                    <status>DISABLED</status>
+                    <description>The number of accounts that are currently attached to this Atom.&#13;
+&#13;
+For single-tenant Atoms, the value is always 1. For multi-tenant Atoms, this value should be monitored for growth over time. Because every node in the Molecule cluster must know about all the accounts in the Molecule, this is a resource constraint that cannot be addressed by adding more nodes to the cluster. This value, coupled with the JVM heap used value, should indicate when a Cloud Molecule has reached its peak capacity and when more Molecules should be added to the Atom Cloud.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Atom status</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=Config&quot;, &quot;Status&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>The current status of the Atom: INITIALIZING, INIT_UPDATING, RUNNING, PAUSING, PAUSED, PAUSING_FOR_STOP, PAUSED_FOR_STOP, STOPPING, or STOPPED.&#13;
+&#13;
+The Atom should spend most of its time in the RUNNING status. This value should be monitored for unexpected changes to other statuses or prolonged periods of time in a non-RUNNING status, which might indicate that the Atom has become stuck.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Is there a clustering problem (Molecules)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ContainerController&quot;, &quot;ClusterProblem&quot;]</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>CHAR</value_type>
+                    <description>(Applies to clustering, which is always enabled in Molecules and Atom Clouds.) The attribute is null if there is no clustering problem. If there is a clustering problem, the Type (Enum) field describes the type of clustering problem that occurred. This corresponds to the problem property value, as described in the Cluster monitoring problems topic.&#13;
+&#13;
+Your monitoring system might also display the following information about the clustering problem:&#13;
+&#13;
+    Time (Date) — Time and date when the problem occurred.&#13;
+&#13;
+    Description (String) — Provides specific details about the problem. For example, the NODE_AWOL error’s description states that some nodes are missing and provides the missing nodes’ names.&#13;
+&#13;
+    Severe (Boolean) — The importance, as described in the Cluster monitoring problems topic.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Atom decommission stage</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ContainerController&quot;, &quot;DecommissionStage&quot;]</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>CHAR</value_type>
+                    <description>The current stage of an active decommission shutdown process: INITIALIZING, PAUSING_ATOM, STOPPING_WORK_HANDLERS, FLUSHING_REPORTS, DRAINING_QUEUES, STOPPING_ATOM, or DONE.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Is node the head cloudlet (Molecules)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ContainerController&quot;, &quot;HeadCloudlet&quot;]</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>CHAR</value_type>
+                    <description>(Applies to clustering, which is always enabled in Molecules and Atom Clouds.) Indicates whether this node is currently the head node in a Molecule cluster.&#13;
+&#13;
+There should never be extended periods of time when no node is the head node, or when more than one node is identified as the head node. During headship transitions this situation might occur temporarily.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Is the Atom restarting</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ContainerController&quot;, &quot;Restarting&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Indicates that the Atom has begun the process of restarting, which might take a while depending on the configuration and current load.&#13;
+&#13;
+This value should be monitored to detect prolonged periods when this value is True, which might indicate that the Atom has become stuck.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Average queue wait time</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;AverageExecutionQueueTime&quot;]</key>
+                    <delay>15m</delay>
+                    <description>A rolling 15-minute average of the amount of time that executions have had to wait on the queue before being executed.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Average execution time</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;AverageExecutionTime&quot;]</key>
+                    <description>The average execution time for all processes that ran on this Atom or Molecule node in the last 15 minutes.&#13;
+&#13;
+This count does not include Atom worker executions.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Total number of tasks that have been queued</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;ExecutionQueueStats.taskCount&quot;]</key>
+                    <description>The total number of executions that have been queued on this Atom since it was started (or the statistics were reset).&#13;
+&#13;
+Trends and point in time anomalies can be detected by tracking this value as a difference between each sample over the time between each sample.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Running executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;LocalExecutionCount&quot;]</key>
+                    <description>The number of current process executions in the Atom or Molecule node.&#13;
+&#13;
+If forked execution is enabled, this count includes executions that are currently queued. This count does not include Atom worker executions.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Maximum queued executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;MaxQueuedExecutions&quot;]</key>
+                    <delay>1d</delay>
+                    <description>This writable property controls the Maximum Queued Executions per Node property.&#13;
+&#13;
+If queuing is disabled, the value is set to 0.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Maximum simultaneous executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;MaxRunningExecutions&quot;]</key>
+                    <delay>1d</delay>
+                    <description>This writable property controls the Maximum Simultaneous Executions per Node property.&#13;
+&#13;
+If queuing is disabled, the value is set to &quot;max int&quot;.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Queued executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;QueuedExecutionCount&quot;]</key>
+                    <description>The number of executions waiting to be executed. An execution will be queued only if the maximum number of executions are already running.&#13;
+&#13;
+If queuing is disabled, the value is set to 0.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Queued executions (estimated)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;QueuedExecutionEstimatedCount&quot;]</key>
+                    <description>The estimated number of executions waiting to be executed. An execution will be queued only if the maximum number of executions are already running.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time. This attribute is the same as QueuedExecutionCount except that fewer resources are required to monitor it. If you are doing extended monitoring, use this attribute.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Queued execution timeout</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;QueuedExecutionTimeout&quot;]</key>
+                    <delay>1d</delay>
+                    <description>This writable property controls the Timeout for Queued Executions per Node property.&#13;
+&#13;
+If queuing is disabled, the value is set to 0.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Running, non-queued executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;RunningExecutionCount&quot;]</key>
+                    <description>The number of executions running.&#13;
+&#13;
+If queueing is disabled, this number will match LocalExecutionCount.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Running executions (estimated)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;RunningExecutionEstimatedCount&quot;]</key>
+                    <description>The estimated number of executions running on this Atom or Molecule node.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time. This attribute is the same as RunningExecutionCount except that fewer resources are required to monitor it. If you are doing extended monitoring, use this attribute.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Total number of executions</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ExecutionManager&quot;, &quot;Stats.localExecutionCount&quot;]</key>
+                    <trends>130d</trends>
+                    <description>The total number of executions that have run on this Atom since it was started (or the statistics were reset).&#13;
+&#13;
+This value can be monitored to get an accurate picture of the total amount of work the Atom is doing. Trends and point in time anomalies can be detected by tracking this value as a difference between each sample over the time between each sample.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of message bytes received (Molecule cluster.)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=JGroups&quot;, &quot;ReceivedBytes&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of message bytes received by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 2x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of messages received (Molecule cluster)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=JGroups&quot;, &quot;ReceivedMessages&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of messages received by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 2x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of message bytes sent (Molecule cluster.)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=JGroups&quot;, &quot;SentBytes&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of message bytes sent by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Number of messages sent.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 2x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of messages sent (Molecule cluster)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=JGroups&quot;, &quot;SentMessages&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of messages sent by this node in the Molecule cluster.&#13;
+&#13;
+This value should be monitored for sudden changes (possibly indicating communication issues in the cluster) or growth over time (possibly indicating the approach of peak workload for the cluster). Note that the head node might have significantly different values from the rest of the nodes in the cluster.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi JGroups 2x</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of download failures</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessagePollerThread&quot;, &quot;DownloadStats.connectFailureCount&quot;]</key>
+                    <description>(Available on head node only) The number of times an error has occurred while the Atom was attempting to download messages from the platform.&#13;
+&#13;
+Dramatic increases in this value could indicate some sort of communication problem between the Atom and the platform.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Incoming messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of downloaded messages</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessagePollerThread&quot;, &quot;DownloadStats.deliveredMessageCount&quot;]</key>
+                    <description>(Available on head node only) The number of messages sent to the Atom from the platform.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Incoming messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>TEMPLATE - The number of messages in memory waiting to be stored to disk</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessageQueue,queueId=&lt;queueName&gt;&quot;, &quot;PendingStoreMessageCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>---Change &lt;queueName&gt; in Key to Match the required Queue Name---&#13;
+&#13;
+Sustained high values could indicate disk issues or reaching peak workloads in the Atom.&#13;
+&#13;
+For most queues in a Molecule or Cloud with forked execution, this value will be 0.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Outgoing messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>TEMPLATE - The number of messages on disk waiting to be sent to platform</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessageQueue,queueId=&lt;queueName&gt;&quot;, &quot;PendingUploadMessageCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>---Change &lt;queueName&gt; in Key to Match the required Queue Name---&#13;
+&#13;
+Sustained high values could indicate communication problems between the Atom and the platform.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Outgoing messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>TEMPLATE - Number of upload failures</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessageQueue,queueId=&lt;queueName&gt;&quot;, &quot;UploadStats.connectFailureCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>---Change &lt;queueName&gt; in Key to Match the required Queue Name---&#13;
+&#13;
+The number of times an error has occurred while the Atom was attempting to upload messages to the platform.&#13;
+&#13;
+Dramatic increases in this value could indicate some sort of communication problem between the Atom and the platform.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Outgoing messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>TEMPLATE - Number of uploaded messages</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MessageQueue,queueId=&lt;queueName&gt;&quot;, &quot;UploadStats.deliveredMessageCount&quot;]</key>
+                    <description>---Change &lt;queueName&gt; in Key to Match the required Queue Name---&#13;
+&#13;
+The number of messages sent from the Atom to the platform.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Outgoing messaging</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Local Atom worker executions (Atom Clouds)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MultiProcessExecutionForker&quot;, &quot;LocalDirectExecutionCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of executions that were sent by the load balancer to this Molecule node and that are now running on an Atom worker. (The actual Atom worker could be running on another node.)&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Local Atom worker count (Atom Clouds)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MultiProcessExecutionForker&quot;, &quot;LocalRunningWorkersCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The number of Atom workers that are running on this Molecule node.&#13;
+&#13;
+This value should be monitored for trends over time, where a high number of Atom workers on all the nodes in the cluster could indicate that the cluster needs more nodes (or other changes in workload).</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Total Atom worker executions running in the cluster (Molecules)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MultiProcessExecutionForker&quot;, &quot;LocalTotalDirectExecutionCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The total number of executions that were sent by the load balancer to this Molecule node and that were run on an Atom worker.&#13;
+&#13;
+This value should be monitored similarly to the Total number of tasks that have been executed.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Total Atom workers running in the cluster (Molecules)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=MultiProcessExecutionForker&quot;, &quot;RunningWorkersCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>The total number of Atom workers that are running on the entire Molecule cluster.&#13;
+&#13;
+This value should be monitored similarly to the Local Atom worker count.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Overall status</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=PluginService,plugin=QUEUE_SERVER&quot;, &quot;HealthStatus&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>The overall status of the service — either Good or Getting Worried.&#13;
+&#13;
+A status of Getting Worried also includes a comma-separated list of the worrisome disk usage metrics.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Accounts with storage problems</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=PluginService,plugin=QUEUE_SERVER&quot;, &quot;ProblemAccountIds&quot;]</key>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <description>A list of accounts whose queue storage is corrupted.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Has the Atom entered into the low memory status</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ResourceManager&quot;, &quot;LowMemory&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Indicates whether the Atom has passed the configured low memory threshold.&#13;
+&#13;
+When the Atom enters the True state for low memory, it changes certain behaviors to attempt to reduce memory usage while preserving currently executing processes. While everything should still run correctly while the Atom is in this state, performance will be degraded. After some period of time when the memory pressure has been eased, this flag will revert to False. This value should be monitored for unexpected changes or more frequent occurrence. Troubleshooting details are in the JVM heap used description.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Has the Atom encountered an OOME</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=ResourceManager&quot;, &quot;OutOfMemory&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <description>Indicates that the Atom has encountered an OutOfMemoryError.&#13;
+&#13;
+By default, the Atom attempts to restart as soon as this situation is detected because the reliability of the JVM has been compromised. This value should be monitored to detect a prolonged period where this value is True, which might indicate that the Atom has become stuck or that the auto-restart behavior has been disabled. Troubleshooting details are in the JVM heap used description.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Number of schedule configurations running on the Atom</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.container.services:type=Scheduler&quot;, &quot;ScheduleCount&quot;]</key>
+                    <history>7d</history>
+                    <description>The number of process schedules that the Atom is currently tracking.&#13;
+&#13;
+Since the head node in the Molecule cluster tracks all the schedules for the cluster, this is a resource constraint that cannot be addressed by adding more nodes to the cluster. This value should be monitored in the same way that the Number of attached accounts value is monitored — by looking for trends indicating that the Atom has reached peak workload.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General Atom status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Jetty thread pool queue size</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.jetty:type=queuedthreadpool,id=0&quot;, &quot;queueSize&quot;]</key>
+                    <description>The number of incoming web service requests that are queued waiting for an available Jetty thread.&#13;
+&#13;
+In a responsive web server, this value should generally be close to 0. This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Jetty properties</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Jetty thread pool size</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;com.boomi.jetty:type=queuedthreadpool,id=0&quot;, &quot;threads&quot;]</key>
+                    <description>The number of threads in the Jetty thread pool, which is used to service incoming web service requests.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Jetty properties</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Garbage collection count</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=GarbageCollector,name=PS MarkSweep&quot;, &quot;CollectionCount&quot;]</key>
+                    <history>30d</history>
+                    <trends>130d</trends>
+                    <description>The total number of garbage collections that have occurred in the JVM.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Garbage collection time</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=GarbageCollector,name=PS MarkSweep&quot;, &quot;CollectionTime&quot;]</key>
+                    <history>30d</history>
+                    <trends>130d</trends>
+                    <description>The accumulated garbage collection time for the JVM.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM heap max</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Memory&quot;,&quot;HeapMemoryUsage.max&quot;]</key>
+                    <description>The maximum size for the heap.&#13;
+&#13;
+The JVM will never attempt to use more heap memory than this value.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM heap used</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Memory&quot;,&quot;HeapMemoryUsage.used&quot;]</key>
+                    <description>The number of bytes of memory that the Java virtual machine (JVM) is currently using.&#13;
+&#13;
+This value should be monitored to look for problematic scenarios, such as a point in time stress (the Atom suddenly consumes a lot more memory than normal) or a general increase in memory over time. Increases over time could indicate a memory leak, depending on how frequently the Atom is restarted. It is more likely that they indicate changes in Atom usage, which might necessitate increasing the Atom's memory allocation or adjusting the workload.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM non-heap max</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Memory&quot;,&quot;NonHeapMemoryUsage.max&quot;]</key>
+                    <description>The maximum size for non-heap memory.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM non-heap used</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Memory&quot;,&quot;NonHeapMemoryUsage.used&quot;]</key>
+                    <description>The number of bytes of non-heap memory that the JVM is currently using.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>OS open file count (Linux)</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=OperatingSystem&quot;, &quot;OpenFileDescriptorCount&quot;]</key>
+                    <status>DISABLED</status>
+                    <description>(Available for Linux only) The open file count for the user running this JVM.&#13;
+&#13;
+Open files are a constrained operating system resource that can be exhausted, leading to sporadic failures. The important thing to understand about open files is that on many operating systems this corresponds to all kinds of open streams (not just file streams), including network connections. This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Operating System Status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM CPU time</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=OperatingSystem&quot;, &quot;ProcessCpuTime&quot;]</key>
+                    <description>The CPU time that has been used by the JVM.&#13;
+&#13;
+This value might not be available on all platforms, in which case -1 is returned.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>OS system load average</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=OperatingSystem&quot;, &quot;SystemLoadAverage&quot;]</key>
+                    <description>The load average of the system for the last minute.&#13;
+&#13;
+The value 0.0 indicates no load and X.0 indicates a full load on a system with X CPUs.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Operating System Status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM uptime</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Runtime&quot;, &quot;Uptime&quot;]</key>
+                    <description>The amount of time that the JVM has been running.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>JVM thread count</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;java.lang:type=Threading&quot;, &quot;ThreadCount&quot;]</key>
+                    <description>The number of active threads in the JVM.&#13;
+&#13;
+This value should be monitored for point in time anomalies and trends over time.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi General JVM status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Job scheduler store disk usage</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;org.apache.activemq:type=Broker,brokerName=atomq&quot;, &quot;JobSchedulerStorePercentUsage&quot;]</key>
+                    <description>The percentage of disk space used by the service’s job scheduler store.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Memory usage</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;org.apache.activemq:type=Broker,brokerName=atomq&quot;, &quot;MemoryPercentUsage&quot;]</key>
+                    <description>The percentage of memory used by the service.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Message store disk usage</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;org.apache.activemq:type=Broker,brokerName=atomq&quot;, &quot;StorePercentUsage&quot;]</key>
+                    <description>The percentage of disk space used by the service’s message store.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Temp store disk usage</name>
+                    <type>JMX</type>
+                    <key>jmx[&quot;org.apache.activemq:type=Broker,brokerName=atomq&quot;, &quot;TempPercentUsage&quot;]</key>
+                    <description>The percentage of disk space used by the service’s temporary data store.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Atom message queue service status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Local running browser count (Atom Clouds)</name>
+                    <type>JMX</type>
+                    <key>jmx[“com.boomi.container.services:type=ConnectorManager”, “LocalRunningBrowsersCount”]</key>
+                    <status>DISABLED</status>
+                    <description>The total number of Atom browse workers that are running on a specific Atom node.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+                <item>
+                    <name>Running browser count (Atom Cloud)</name>
+                    <type>JMX</type>
+                    <key>jmx[“com.boomi.container.services:type=ConnectorManager”, “RunningBrowsersCount”]</key>
+                    <status>DISABLED</status>
+                    <description>The total number of Atom browse workers that are running on the entire clustered Atom Cloud.</description>
+                    <applications>
+                        <application>
+                            <name>Boomi Execution properties status</name>
+                        </application>
+                    </applications>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
